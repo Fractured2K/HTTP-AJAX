@@ -6,8 +6,6 @@ import {
     NavbarBrand,
     Nav,
     NavItem,
-    NavLink,
-    Button,
 } from 'reactstrap';
 
 // Components
@@ -36,7 +34,7 @@ class Navigation extends Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <AddFriend />
+                            <AddFriend addFriend={this.props.addFriend} />
                         </NavItem>
                     </Nav>
                 </Collapse>

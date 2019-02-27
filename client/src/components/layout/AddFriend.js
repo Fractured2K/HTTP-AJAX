@@ -1,11 +1,15 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import axios from 'axios';
 
 import {
     Modal,
     ModalHeader,
     ModalBody,
     ModalFooter,
-    Button
+    Button,
+    FormGroup,
+    Label,
+    Input,
 } from 'reactstrap';
 
 export class AddFriend extends Component {
@@ -13,7 +17,10 @@ export class AddFriend extends Component {
         super(props);
 
         this.state = {
-            modal: false
+            modal: false,
+            name: '',
+            age: '',
+            email: ''
         };
     }
 
@@ -21,6 +28,30 @@ export class AddFriend extends Component {
         this.setState(prevState => ({
             modal: !prevState.modal
         }));
+    }
+
+    onChange = (e) => {
+        this.setState({
+            [e.target.name]: e.target.value
+        });
+    }
+
+    addFriend = (e) => {
+        e.preventDefault();
+
+        const newFriend = {
+            name: this.state.name,
+            age: parseInt(this.state.age, 10),
+            email: this.state.email
+        }
+
+        this.props.addFriend(newFriend)
+
+        this.setState({
+            name: '',
+            age: '',
+            email: ''
+        })
     }
 
     render() {
@@ -31,14 +62,27 @@ export class AddFriend extends Component {
                 </div>
 
                 <Modal isOpen={this.state.modal} toggle={this.toggle} className={this.props.className}>
-                    <ModalHeader toggle={this.toggle}>Modal title</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Add Friend</ModalHeader>
                     <ModalBody>
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </ModalBody>
-                    <ModalFooter>
-                        <Button color="primary" onClick={this.toggle}>Do Something</Button>{' '}
-                        <Button color="secondary" onClick={this.toggle}>Cancel</Button>
-                    </ModalFooter>
+                        <form onSubmit={this.addFriend}>
+                            <FormGroup>
+                                <Label for="name">Name:</Label>
+                                <Input type="text" value={this.state.name} name="name" onChange={this.onChange} placeholder="enter your name" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="age">Age:</Label>
+                                <Input type="text" value={this.state.age} name="age" onChange={this.onChange} placeholder="enter your age" />
+                            </FormGroup>
+                            <FormGroup>
+                                <Label for="email">Email:</Label>
+                                <Input type="text" value={this.state.email} name="email" onChange={this.onChange} placeholder="enter your email" />
+                            </FormGroup>
+                            <ModalFooter>
+                                <Button type="submit" color="success" onClick={this.toggle}>Add Friend</Button>{' '}
+                                <Button color="secondary" onClick={this.toggle}>Cancel</Button>
+                            </ModalFooter>
+                        </form>
+                    </ModalBody>
                 </Modal>
             </div>
         )
