@@ -7,26 +7,28 @@ import {
     Nav,
     NavItem,
     NavLink,
-    Button
+    Button,
 } from 'reactstrap';
+
+// Components
+import { AddFriend } from './AddFriend';
 
 class Navigation extends Component {
     constructor(props) {
         super(props);
 
-        this.toggle = this.toggle.bind(this);
         this.state = {
-            isOpen: false
+            isOpen: false,
         };
     }
-    toggle() {
+
+    toggle = () => {
         this.setState({
             isOpen: !this.state.isOpen
         });
     }
 
     render() {
-
         return (
             <Navbar color="dark" dark expand="md" >
                 <NavbarBrand href="/">React Friends</NavbarBrand>
@@ -34,7 +36,7 @@ class Navigation extends Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <Button color="primary">Add Friend</Button>
+                            <AddFriend />
                         </NavItem>
                     </Nav>
                 </Collapse>
