@@ -12,13 +12,10 @@ import {
 import FriendForm from '../FriendForm';
 
 class Navigation extends Component {
-    constructor(props) {
-        super(props);
+    state = {
+        isOpen: false,
+    };
 
-        this.state = {
-            isOpen: false,
-        };
-    }
 
     toggle = () => {
         this.setState({
@@ -34,7 +31,7 @@ class Navigation extends Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <FriendForm addFriend={this.props.addFriend} />
+                            <FriendForm onClick={this.props.toggleModal} addFriend={this.props.addFriend} />
                         </NavItem>
                     </Nav>
                 </Collapse>

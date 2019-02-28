@@ -10,19 +10,25 @@ class App extends Component {
   }
 
   componentDidMount() {
-    axios.get('http://localhost:5000/friends')
+    axios.get('https://jb-react-ajax-hooks-demo.netlify.com/.netlify/functions/friends')
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err))
   }
 
   addFriend = (friend) => {
-    axios.post('http://localhost:5000/friends', { ...friend })
+    axios.post('https://jb-react-ajax-hooks-demo.netlify.com/.netlify/functions/friends', { ...friend })
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err));
   }
 
   deleteFriend = (id) => {
-    axios.delete(`http://localhost:5000/friends/${id}`)
+    axios.delete(`https://jb-react-ajax-hooks-demo.netlify.com/.netlify/functions/friends/${id}`)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err))
+  }
+
+  updateFriend = (friend) => {
+    axios.put(`https://jb-react-ajax-hooks-demo.netlify.com/.netlify/functions/friends/${friend.id}`, friend)
       .then(res => this.setState({ friends: res.data }))
       .catch(err => console.log(err))
   }
@@ -32,7 +38,7 @@ class App extends Component {
     return (
       <div className="App">
         <Navigation addFriend={this.addFriend} />
-        <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
+        <Friends friends={this.state.friends} updateFriend={this.updateFriend} deleteFriend={this.deleteFriend} />
       </div>
     );
   }
