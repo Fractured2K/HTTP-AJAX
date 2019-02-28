@@ -9,7 +9,7 @@ import {
 } from 'reactstrap';
 
 // Components
-import { AddFriend } from './AddFriend';
+import FriendForm from '../FriendForm';
 
 class Navigation extends Component {
     constructor(props) {
@@ -34,7 +34,7 @@ class Navigation extends Component {
                 <Collapse isOpen={this.state.isOpen} navbar>
                     <Nav className="ml-auto" navbar>
                         <NavItem>
-                            <AddFriend addFriend={this.props.addFriend} />
+                            <FriendForm addFriend={this.props.addFriend} />
                         </NavItem>
                     </Nav>
                 </Collapse>

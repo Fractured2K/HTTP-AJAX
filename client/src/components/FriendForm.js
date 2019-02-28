@@ -13,16 +13,12 @@ import {
 } from 'reactstrap';
 
 export class AddFriend extends Component {
-    constructor(props) {
-        super(props);
-
-        this.state = {
-            modal: false,
-            name: '',
-            age: '',
-            email: ''
-        };
-    }
+    state = {
+        modal: false,
+        name: '',
+        age: '',
+        email: ''
+    };
 
     toggle = () => {
         this.setState(prevState => ({
@@ -71,7 +67,7 @@ export class AddFriend extends Component {
                             </FormGroup>
                             <FormGroup>
                                 <Label for="age">Age:</Label>
-                                <Input type="text" value={this.state.age} name="age" onChange={this.onChange} placeholder="enter your age" />
+                                <Input type="number" value={this.state.age} name="age" onChange={this.onChange} placeholder="enter your age" />
                             </FormGroup>
                             <FormGroup>
                                 <Label for="email">Email:</Label>

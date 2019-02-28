@@ -5,12 +5,8 @@ import Friends from './components/Friends';
 import Navigation from './components/layout/Navbar';
 
 class App extends Component {
-  constructor() {
-    super();
-
-    this.state = {
-      friends: []
-    }
+  state = {
+    friends: []
   }
 
   componentDidMount() {
@@ -25,12 +21,18 @@ class App extends Component {
       .catch(err => console.log(err));
   }
 
+  deleteFriend = (id) => {
+    axios.delete(`http://localhost:5000/friends/${id}`)
+      .then(res => this.setState({ friends: res.data }))
+      .catch(err => console.log(err))
+  }
+
 
   render() {
     return (
       <div className="App">
         <Navigation addFriend={this.addFriend} />
-        <Friends friends={this.state.friends} />
+        <Friends friends={this.state.friends} deleteFriend={this.deleteFriend} />
       </div>
     );
   }

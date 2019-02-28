@@ -24,7 +24,7 @@ const Friends = (props) => {
                 </tr>
             </thead>
             <tbody>
-                {props.friends.map(friend => <Friend friend={friend} />)}
+                {props.friends.map(friend => <Friend key={friend.id} friend={friend} deleteFriend={props.deleteFriend} />)}
             </tbody>
         </Table>
     )

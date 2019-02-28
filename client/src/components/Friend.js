@@ -9,7 +9,7 @@ const Friend = (props) => {
             <td>{props.friend.email}</td>
             <td>
                 <Button color="primary">Edit</Button>{' '}
-                <Button color="danger">Delete</Button>
+                <Button color="danger" onClick={() => props.deleteFriend(props.friend.id)}>Delete</Button>
             </td>
         </tr>
     )
